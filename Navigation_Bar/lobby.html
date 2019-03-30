@@ -41,26 +41,67 @@
             </div>
         </nav>
     </div>
-
+    <!-- User Game table -->
     <div class="container">
-        <table>
-            <tr>
-                <th>User Games</th>
-            </tr>
-            <tr>
-                <td>Game #1</td>
-            </tr>
-            <tr>
-                <td>Game #2</td>
-            </tr>
-            <tr>
-                <td>Game #3</td>
-            </tr>
-            <tr>
-                <td>Game #4</td>
-            </tr>
-        </table>
+        <input type="button" onclick="user_game()" value="Create Table From JSON" />
+        <p id="showData"></p>
     </div>
 </body>
+<script>
+    function user_game() {
+        var jsonExamples = [{
+            "Oponent": "joe"
+        }, {
+            "Oponent": "Jenna"
+        }, {
+            "Oponent": "Grave"
+        }, {
+            "Oponent": "Mary"
+        }, {
+            "Oponent": "Erick"
+        }]
+
+        var col = [];
+        for (var i = 0; i < jsonExamples.length; i++) {
+            for (var key in jsonExamples[i]) {
+                if (col.indexOf(key) === -1) {
+                    col.push(key);
+                }
+            }
+        }
+
+        // CREATE DYNAMIC TABLE.
+        var table = document.createElement("table");
+
+        var tr = table.insertRow(-1);
+
+
+        for (var i = 0; i < col.length; i++) {
+            var th = document.createElement("th");
+            //this will add the name on the left of the Json as table name 
+            // th.innerHTML = col[i];
+            //this creates a custom table name 
+            th.innerHTML = "User Games"
+            tr.appendChild(th);
+        }
+
+
+        for (var i = 0; i < jsonExamples.length; i++) {
+            tr = table.insertRow(-1);
+
+            for (var j = 0; j < col.length; j++) {
+                var tabCell = tr.insertCell(-1);
+                tabCell.innerHTML = jsonExamples[i][col[j]];
+            }
+        }
+        var divContainer = document.getElementById("showData");
+        divContainer.innerHTML = "";
+        divContainer.appendChild(table);
+        $("tr").click(function() {
+            window.location = "index.html";
+        });
+
+    }
+</script>
 
 </html>

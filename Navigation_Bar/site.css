@@ -23,6 +23,16 @@ tr:nth-child(even) {
     background-color: #dddddd;
 }
 
+tr:hover {
+    cursor: pointer;
+    background-color: #ccc;
+}
+
+.myclass tr:hover {
+    cursor: pointer;
+    background-color: #ccc;
+}
+
 .imgcontainer {
     text-align: center;
     margin: 24px 0 12px 0;
@@ -33,23 +43,13 @@ img.avatar {
     border-radius: 50%;
 }
 
+
+/* used to create a container (square ) */
+
 .container {
     padding: 16px;
 }
 
 .nav-border {
     border-radius: 30px;
-}
-
-
-/* Change styles for span and cancel button on extra small screens */
-
-@media screen and (max-width: 300px) {
-    span.psw {
-        display: block;
-        float: none;
-    }
-    .cancelbtn {
-        width: 100%;
-    }
 }
