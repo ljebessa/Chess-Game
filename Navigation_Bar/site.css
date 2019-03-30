@@ -53,3 +53,16 @@ img.avatar {
 .nav-border {
     border-radius: 30px;
 }
+
+
+/* Canvas to create the centered square for chess board */
+
+canvas {
+    max-width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    border-radius: 0.5em;
+}
