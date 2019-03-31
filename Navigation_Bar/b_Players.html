@@ -97,16 +97,19 @@
             var tr = table.insertRow(-1);
 
 
-            for (var i = 0; i < col.length; i++) {
+          //  for (var i = 0; i < col.length; i++) {
                 var th = document.createElement("th");
                 //this will add the name on the left of the Json as table name 
                 // th.innerHTML = col[i];
                 //this creates a custom table name 
                 th.innerHTML = "Top Ranks"
                 tr.appendChild(th);
+                var th = document.createElement("th");
+
+
                 th.innerHTML = "Points"
                 tr.appendChild(th);
-            }
+            //}
 
 
             for (var i = 0; i < jsonExamples.length; i++) {
