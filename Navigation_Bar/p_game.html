@@ -93,47 +93,99 @@
                         });
                     </script>
         </canvas>
-       
-<div class = "container">
-       <!--
-                <meta name="viewport" content="width=device-width, initial-scale=1">
-                <style>
-                .vertical-menu {
-                  width: 200px;
-                }
-                
-                .vertical-menu a {
-                  background-color: #eee;
-                  color: black;
-                  display: block;
-                  padding: 12px;
-                  text-decoration: none;
-                }
-                
-                .vertical-menu a:hover {
-                  background-color: #ccc;
-                }
-                
-                .vertical-menu a.active {
-                  background-color: #4CAF50;
-                  color: white;
-                }
-                </style>
-                
-               
-                
-                <div class="vertical-menu">
-                  <a href="#" class="active">Move List</a>
-                  <a href="#">Text 1</a>
-                  <a href="#">Text 2</a>
-                  <a href="#">Text 3</a>
-                  <a href="#">Text 4</a>
-                </div>
-            -->
-                <p id="showData"></p>
-                 
 
-</div>
+        <div class = "container">
+       
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <style>
+            .dropbtn {
+              background-color: rgb(52, 180, 219);
+              color: white;
+              padding: 16px;
+              font-size: 16px;
+              border: none;
+              cursor: pointer;
+            }
+            
+            .dropbtn:hover, .dropbtn:focus {
+              background-color: #2980B9;
+            }
+            
+            .dropdown {
+              position: relative;
+              display: inline-block;
+            }
+            
+            .dropdown-content {
+              display: none;
+              position: absolute;
+              background-color: #f1f1f1;
+              min-width: 160px;
+              overflow: auto;
+              box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+              z-index: 1;
+            }
+            
+            .dropdown-content a {
+              color: black;
+              padding: 12px 16px;
+              text-decoration: none;
+              display: block;
+            }
+            
+            .dropdown a:hover {background-color: #ddd;}
+            
+            .show {display: block;}
+            </style>
+            </head>
+            <body>
+            
+           
+                
+            
+            <div class="dropdown">
+              <button onclick="myFunction()" class="dropbtn">Move List</button>
+              <div id="myDropdown" class="dropdown-content">
+                <a href="#move">Person 10: Text 10</a>
+                <a href="#move">Person 9: Text 9</a>
+                <a href="#move">Person 8: Text 8</a>
+                <a href="#move">Person 7: Text 7</a>
+                <a href="#move">Person 6: Text 6</a>
+                <a href="#move">Person 5: Text 5</a>
+                <a href="#move">Person 4: Text 4</a>
+                <a href="#move">Person 3: Text 3</a>
+                <a href="#move">Person 2: Text 2</a>
+                <a href="#move">Person 1: Text 1</a>
+              </div>
+            </div>
+            
+            <script>
+           
+            function myFunction() {
+              document.getElementById("myDropdown").classList.toggle("show");
+            }
+            
+            // Close the dropdown if the user clicks outside of it
+            window.onclick = function(event) {
+              if (!event.target.matches('.dropbtn')) {
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                var i;
+                for (i = 0; i < dropdowns.length; i++) {
+                  var openDropdown = dropdowns[i];
+                  if (openDropdown.classList.contains('show')) {
+                    openDropdown.classList.remove('show');
+                  }
+                }
+              }
+            }
+            </script>
+               
+                       
+        
+        </div>
+       
+
 <script src = "move.js"></script>  
 </body>
+
 </html>

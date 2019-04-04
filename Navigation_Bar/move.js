@@ -1,5 +1,6 @@
 
         function user_game() {
+           
             var jsonExamples = [{
                 "Oponent": "joe",
                 "move": "move king to B3"
@@ -13,7 +14,8 @@
                 "Oponent": "Jenna",
                 "move": "move queen to C7"
             }]
-
+            
+            
             var col = [];
             for (var i = 0; i < jsonExamples.length; i++) {
                 for (var key in jsonExamples[i]) {
@@ -63,3 +65,4 @@
 
         }
         window.onload = user_game;
+        
