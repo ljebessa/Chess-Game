@@ -47,51 +47,78 @@
             </div>
         </nav>
     </div>
-    <canvas id="chess-board">
-                <script>
-                        class Board {
-                            constructor(config) {
-                                this.options = {
-                                    selector: document.querySelector("#board"),
-                                    width: 480,
-                                    size: 8,
-                                    light: '#d1eefc',
-                                    dark: '#1f1f21'
-                                };
-                                if (config) Object.assign(this.options, this.options, config);
-                                this.draw();
-                            }
-            
-                            draw() {
-                                let el = this.options.selector;
-                                let ctx = el.getContext("2d");
-                                let squareWidth = this.options.width / this.options.size;
-                                let totalSquares = Math.pow(this.options.size, 2);
-                                let i, x, y = -1;
-            
-                                el.width = this.options.width;
-                                el.height = this.options.width;
-            
-                                for (i = 0; i < totalSquares; i++) {
-                                    x++;
-                                    if (i % this.options.size == 0) {
-                                        y++;
-                                        x = 0;
-                                    }
-            
-                                    ctx.beginPath();
-                                    ctx.rect(x * squareWidth, y * squareWidth, squareWidth, squareWidth);
-                                    ctx.fillStyle = (x + y) % 2 ? this.options.dark : this.options.light;
-                                    ctx.fill();
-                                }
-                            }
-                        }
-            
-                        let chessBoard = new Board({
-                            selector: document.querySelector("#chess-board")
-                        });
-                    </script>
-        </canvas>
+    <canvas id="myCanvas" height="480" width="480"></canvas>
+    <script>
+        var canvas = document.getElementById("myCanvas");
+        var ctx = canvas.getContext("2d");
+        var width = 480;
+        var size = 8;
+        var light = '#D2691E';
+        var dark = '#703810';
+        var x = -1;
+        var y = -1;
+        let totalSquares = Math.pow(size, 2);
+        let squareWidth = width / size;
+        var imgSRC = [];
+        for (var k = 1; k < 13; k++) {
+            imgSRC[k] = "images/" + k + ".png";
+            console.log(imgSRC[k]);
+        }
+        const images = []; /// array to hold images.
+        var imageCount = 0; // number of loaded images;
+
+
+        function drawBoard() {
+            ctx.beginPath();
+            ctx.rect(x * squareWidth, y * squareWidth, squareWidth, squareWidth);
+            console.log(x * squareWidth, y * squareWidth, squareWidth, squareWidth)
+            ctx.fillStyle = (x + y) % 2 ? dark : light;
+            ctx.fill();
+            ctx.closePath();
+        }
+
+        function allImagesLoaded() {
+            var count = 0;
+            while (count != 13) {
+                ctx.beginPath();
+                ctx.drawImage(images[0], x * squareWidth, y * squareWidth, squareWidth, squareWidth);
+                ctx.closePath();
+            }
+
+        }
+
+        function drawImg() {
+
+            // iterate each image URL, create, load, and add it to the images array
+            imgSRC.forEach(src => { // for each image url
+                const image = new Image();
+                image.src = src;
+                image.onload = () => {
+                    imageCount += 1;
+                    if (imageCount === imgSRC.length) { // have all loaded????
+                        allImagesLoaded(); // call function to start rendering
+                    }
+                }
+                images.push(image); // add loading image to images array
+
+            });
+        }
+
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (var i = 0; i < totalSquares; i++) {
+                x++;
+                if (i % size == 0) {
+                    y++;
+                    x = 0;
+                }
+                drawBoard();
+                //drawImg();
+            }
+        }
+        draw();
+        // setInterval(draw, 100000000);
+    </script>
 </body>
 
 </html>
