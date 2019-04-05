@@ -48,44 +48,60 @@
     </div>
     <!-- User Game table -->
     <!--<input type="button" onclick="user_game()" value="Create Table From JSON" /> -->
-    <div class="first-box">
-        <p id="showData"></p>
-    </div>
-    <div class="second-box">
-        <div>
-            <p id="available_games"></p>
+    <div id="content">
+        <div id="nav" class="tab"></div>
+        <div id="form" class="tab">
+            <p id="showData"></p>
+
         </div>
+        <div id="map" class="tab">
 
-        <div>
-            <p id="show"></p>
+            <div>
+                <p id="available_games"></p>
+            </div>
+            <div>
+                <p id="show"></p>
+            </div>
+            <div>
+                <header>
+                    <div class="chat-header">
+                        <h1>Game Chat</h1>
+                    </div>
+                    <div class="player-header">
+                        <h1>Online</h1>
+                    </div>
+                </header>
+
+                <section class="chat">
+                    <p><strong>John</strong>: Hello!</p>
+                    <p><strong>Bob</strong>: How are you!</p>
+                </section>
+
+                <section class="onlineP">
+                    <p><strong>John</strong>: Hello!</p>
+                    <p><strong>Bob</strong>: How are you!</p>
+                </section>
+
+                <form>
+                    <input type="text" placeholder="be respecful when you chat" />
+                    <button>Send</button>
+                </form>
+            </div>
         </div>
-        <main>
-            <header>
-                <div class="user-count"></div>
-                <h1>Game Chat</h1>
-            </header>
-
-            <section class="chat">
-                <p><strong>John</strong>: Hello!</p>
-                <p><strong>Bob</strong>: How are you!</p>
-            </section>
-
-            <form>
-                <input type="text" placeholder="be respecful when you chat" />
-                <button>Send</button>
-            </form>
-        </main>
+        <div id="utils" class="tab"></div>
     </div>
     <script>
         window.addEventListener("load", myInit, true);
 
         function myInit() {
-            user_game(), onlineP(), available_games()
+            user_game(), onlineP(), available_games(), online()
         };
     </script>
     <script src="user_Game.js"></script>
     <script src="available_games.js"></script>
     <script src="online_players.js"></script>
+    <script src="resizable.js"></script>
+    <script src="onlineP.js"></script>
     <!--<script src="chat.js"></script>  -->
 
 

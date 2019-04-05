@@ -1,4 +1,4 @@
-function user_game() {
+function online() {
     var jsonExamples = [{
         "Oponent": "Bob"
     }, {
@@ -7,10 +7,6 @@ function user_game() {
         "Oponent": "Grave"
     }, {
         "Oponent": "Mary"
-    }, {
-        "Oponent": "Erick"
-    }, {
-        "Oponent": "Erick"
     }, {
         "Oponent": "Erick"
     }]
@@ -43,7 +39,7 @@ function user_game() {
             tabCell.innerHTML = jsonExamples[i][col[j]];
         }
     }
-    var divContainer = document.getElementById("showData");
+    var divContainer = document.getElementById("on");
     divContainer.innerHTML = "";
     divContainer.appendChild(table);
     $("tr").click(function() {
