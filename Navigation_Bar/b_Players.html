@@ -43,7 +43,7 @@
     </div>
 
     <div class="container">
-        <h1> put player Stats here</h1>
+        <h1> Best Player Stats</h1>
         <p id="showData"></p>
     </div>
 
@@ -52,34 +52,54 @@
         function top_users() {
             var jsonExamples = [{
                 "user": "joe",
-                "points":"100"
+                "points":"1000",
+                "win" : "10",
+                "loss":"0"
             }, {
                 "user": "Jenna",
-                "points":"200"
+                "points":"900",
+                "win" : "9",
+                "loss":"0"
             }, {
                 "user": "Grave",
-                "points":"300"
+                "points":"890",
+                "win" : "9",
+                "loss":"1"
             }, {
                 "user": "Mary",
-                "points":"400"
+                "points":"800",
+                "win" : "8",
+                "loss":"0"
             }, {
                 "user": "Erick",
-                "points":"500"
+                "points":"700",
+                "win" : "7",
+                "loss":"0"
             }, {
                 "user": "Nina",
-                "points":"500"
+                "points":"500",
+                "win" : "5",
+                "loss":"0"
             }, {
                 "user": "Lidiya",
-                "points":"999"
+                "points":"499",
+                "win" : "6",
+                "loss":"2"
             }, {
                 "user": "Anton",
-                "points":"550"
+                "points":"450",
+                "win" : "4",
+                "loss":"0"
             }, {
                 "user": "Souza",
-                "points":"230"
+                "points":"230",
+                "win" : "4",
+                "loss":"1"
             }, {
                 "user": "Ryan",
-                "points":"100"
+                "points":"100",
+                "win" : "2",
+                "loss":"1"
             }]
 
             var col = [];
@@ -109,6 +129,13 @@
 
                 th.innerHTML = "Points"
                 tr.appendChild(th);
+                var th = document.createElement("th");
+                th.innerHTML = "Games Won!"
+                tr.appendChild(th);
+                var th = document.createElement("th");
+                th.innerHTML = "Games Lost!"
+                tr.appendChild(th);
+
             //}
 
 
