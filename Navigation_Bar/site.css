@@ -11,25 +11,41 @@ button:hover {
     opacity: 0.8;
 }
 
+.table-header {
+    width: 100%;
+    padding: 1px;
+    text-align: center;
+    background: hsl(150, 50%, 50%);
+    color: black;
+    font-size: 30px;
+}
+
 table {
     font-family: arial, sans-serif;
     border-collapse: separate;
-    margin-bottom: 10px;
+    margin-bottom: 16px;
     width: 100%;
 }
 
 table td {
     border: 1px solid #dddddd;
     text-align: left;
-    padding: 16px;
+    padding: 5px;
 }
 
 table th {
     border: 1px solid #dddddd;
     text-align: left;
-    padding: 16px;
+    padding: 5px;
     background: beige;
 }
+
+
+/* this line work to change color to each row in a colum
+tr:nth-child(1) {
+    width: 120%;
+    background: hsl(150, 50%, 50%);
+}*/
 
 tr:nth-child(even) {
     background-color: #dddddd;
@@ -192,7 +208,5 @@ button {
 
 #utils {
     background-color: white;
-    /* wenn nicht -1px */
-    /* bricht utils beim Schieben auf die nächste Zeile */
     width: calc(13% - 1px);
 }

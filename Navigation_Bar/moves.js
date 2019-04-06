@@ -1,14 +1,19 @@
-function online() {
+function moves() {
     var jsonExamples = [{
-        "Oponent": "Bob"
+        "White": "e4",
+        "Black": "e6"
     }, {
-        "Oponent": "Jenna"
+        "White": "Nb3",
+        "Black": "Nc6"
     }, {
-        "Oponent": "Grave"
+        "White": "Bb5",
+        "Black": "Nf6"
     }, {
-        "Oponent": "Mary"
+        "White": "Nc3",
+        "Black": "Bc5"
     }, {
-        "Oponent": "Erick"
+        "White": "0-0",
+        "Black": "d5"
     }]
 
     var col = [];
@@ -27,7 +32,10 @@ function online() {
 
 
     var th = document.createElement("th");
-    th.innerHTML = "User Games";
+    th.innerHTML = "White";
+    tr.appendChild(th);
+    var th = document.createElement("th");
+    th.innerHTML = "Black";
     tr.appendChild(th);
 
 
@@ -39,7 +47,7 @@ function online() {
             tabCell.innerHTML = jsonExamples[i][col[j]];
         }
     }
-    var divContainer = document.getElementById("on");
+    var divContainer = document.getElementById("moves");
     divContainer.innerHTML = "";
     divContainer.appendChild(table);
     $("tr").click(function() {

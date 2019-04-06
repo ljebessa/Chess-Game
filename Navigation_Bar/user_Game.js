@@ -1,18 +1,25 @@
 function user_game() {
     var jsonExamples = [{
-        "Oponent": "Bob"
+        "Oponent": "Bob",
+        "status": "Going"
     }, {
-        "Oponent": "Jenna"
+        "Oponent": "Jenna",
+        "status": "Going"
     }, {
-        "Oponent": "Grave"
+        "Oponent": "Grave",
+        "status": "Going"
     }, {
-        "Oponent": "Mary"
+        "Oponent": "Mary",
+        "status": "Going"
     }, {
-        "Oponent": "Erick"
+        "Oponent": "Erick",
+        "status": "Finished"
     }, {
-        "Oponent": "Erick"
+        "Oponent": "Erick",
+        "status": "Finished"
     }, {
-        "Oponent": "Erick"
+        "Oponent": "Erick",
+        "status": "Finished"
     }]
 
     var col = [];
@@ -31,7 +38,10 @@ function user_game() {
 
 
     var th = document.createElement("th");
-    th.innerHTML = "User Games";
+    th.innerHTML = "Game";
+    tr.appendChild(th);
+    var th = document.createElement("th");
+    th.innerHTML = "Status";
     tr.appendChild(th);
 
 
@@ -43,7 +53,7 @@ function user_game() {
             tabCell.innerHTML = jsonExamples[i][col[j]];
         }
     }
-    var divContainer = document.getElementById("showData");
+    var divContainer = document.getElementById("userGames");
     divContainer.innerHTML = "";
     divContainer.appendChild(table);
     $("tr").click(function() {

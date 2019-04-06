@@ -43,63 +43,64 @@
     </div>
 
     <div class="container">
-        <h1> Best Player Statistics</h1>
+        <div class="table-header">
+            <h4> Best Player Statistics</h4>
+        </div>
         <p id="showData"></p>
     </div>
 
     <script type="text/javascript">
-        
         function top_users() {
             var jsonExamples = [{
                 "user": "joe",
-                "points":"1000",
-                "win" : "10",
-                "loss":"0"
+                "points": "1000",
+                "win": "10",
+                "loss": "0"
             }, {
                 "user": "Jenna",
-                "points":"900",
-                "win" : "9",
-                "loss":"0"
+                "points": "900",
+                "win": "9",
+                "loss": "0"
             }, {
                 "user": "Grave",
-                "points":"890",
-                "win" : "9",
-                "loss":"1"
+                "points": "890",
+                "win": "9",
+                "loss": "1"
             }, {
                 "user": "Mary",
-                "points":"800",
-                "win" : "8",
-                "loss":"0"
+                "points": "800",
+                "win": "8",
+                "loss": "0"
             }, {
                 "user": "Erick",
-                "points":"700",
-                "win" : "7",
-                "loss":"0"
+                "points": "700",
+                "win": "7",
+                "loss": "0"
             }, {
                 "user": "Nina",
-                "points":"500",
-                "win" : "5",
-                "loss":"0"
+                "points": "500",
+                "win": "5",
+                "loss": "0"
             }, {
                 "user": "Lidiya",
-                "points":"499",
-                "win" : "6",
-                "loss":"2"
+                "points": "499",
+                "win": "6",
+                "loss": "2"
             }, {
                 "user": "Anton",
-                "points":"450",
-                "win" : "4",
-                "loss":"0"
+                "points": "450",
+                "win": "4",
+                "loss": "0"
             }, {
                 "user": "Souza",
-                "points":"230",
-                "win" : "4",
-                "loss":"1"
+                "points": "230",
+                "win": "4",
+                "loss": "1"
             }, {
                 "user": "Ryan",
-                "points":"100",
-                "win" : "2",
-                "loss":"1"
+                "points": "100",
+                "win": "2",
+                "loss": "1"
             }]
 
             var col = [];
@@ -114,27 +115,19 @@
             // CREATE DYNAMIC TABLE.
             var table = document.createElement("table");
 
-            var tr = table.insertRow(-1);
-
-
-          //  for (var i = 0; i < col.length; i++) {
-                var th = document.createElement("th");
-                //this will add the name on the left of the Json as table name 
-                // th.innerHTML = col[i];
-                //this creates a custom table name 
-                th.innerHTML = "Top Ranks"
-                tr.appendChild(th);
-                var th = document.createElement("th");
-
-
-                th.innerHTML = "Points"
-                tr.appendChild(th);
-                var th = document.createElement("th");
-                th.innerHTML = "Games Won!"
-                tr.appendChild(th);
-                var th = document.createElement("th");
-                th.innerHTML = "Games Lost!"
-                tr.appendChild(th);
+            tr = table.insertRow(-1);
+            var th = document.createElement("th");
+            th.innerHTML = "Top Ranks"
+            tr.appendChild(th);
+            var th = document.createElement("th");
+            th.innerHTML = "Points"
+            tr.appendChild(th);
+            var th = document.createElement("th");
+            th.innerHTML = "Games Won!"
+            tr.appendChild(th);
+            var th = document.createElement("th");
+            th.innerHTML = "Games Lost!"
+            tr.appendChild(th);
 
             //}
 
@@ -156,9 +149,6 @@
 
         }
         window.onload = top_users;
-
-
-
     </script>
 
 

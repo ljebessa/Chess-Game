@@ -1,20 +1,19 @@
-function available_games() {
+function onGames() {
     var jsonExamples = [{
-        "Oponent": "Anton",
-        "Level": "Begginer"
-
+        "Player 1": "Bob",
+        "Player 2": "Mark"
     }, {
-        "Oponent": "Jenna",
-        "Level": "Intermediate"
+        "Player 1": "Jenna",
+        "Player 2": "Bob"
     }, {
-        "Oponent": "Grave",
-        "Level": "Intermediate"
+        "Player 1": "Grave",
+        "Player 2": "John"
     }, {
-        "Oponent": "Mary",
-        "Level": "Begginer"
+        "Player 1": "Mary",
+        "Player 2": "Jake"
     }, {
-        "Oponent": "Erick",
-        "Level": "Advanced"
+        "Player 1": "Erick",
+        "Player 2": "Patricia"
     }]
 
     var col = [];
@@ -31,20 +30,12 @@ function available_games() {
 
     var tr = table.insertRow(-1);
 
-    /**
-     * this  creates dynamic headers from Json naming
-     * for (var i = 0; i < col.length; i++) {
-            var th = document.createElement("th");
-             th.innerHTML = col[i];
-             tr.appendChild(th);
-        }
-     */
-    var th = document.createElement("th");
-    th.innerHTML = "Player"
-    tr.appendChild(th);
 
     var th = document.createElement("th");
-    th.innerHTML = "Level"
+    th.innerHTML = "Player 1";
+    tr.appendChild(th);
+    var th = document.createElement("th");
+    th.innerHTML = "Player 2";
     tr.appendChild(th);
 
 
@@ -56,9 +47,9 @@ function available_games() {
             tabCell.innerHTML = jsonExamples[i][col[j]];
         }
     }
-    var aGames = document.getElementById("available_games");
-    aGames.innerHTML = "";
-    aGames.appendChild(table);
+    var divContainer = document.getElementById("onG");
+    divContainer.innerHTML = "";
+    divContainer.appendChild(table);
     $("tr").click(function() {
         window.location = "index.html";
     });

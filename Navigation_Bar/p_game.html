@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-    <link href="private_game.css" rel="stylesheet">
+    <link href="p_game.css" rel="stylesheet">
     <style>
         canvas {
             border: 1px solid #d3d3d3;
@@ -119,23 +119,29 @@
         draw();
         // setInterval(draw, 100000000);
     </script>
+
     <div class="ex1">
-        <div>
+
+        <div id="nav" class="tab">
+        </div>
+        <div id="form" class="tab">
+            <div class="table-header">
+                <h4> Game Moves</h4>
+            </div>
+            <div>
+                <p id="moves"></p>
+            </div>
+        </div>
+        <div id="map" class="tab">
             <header>
                 <div class="chat-header">
-                    <h1>Game Chat</h1>
-                </div>
-                <div class="player-header">
-                    <h1>Online</h1>
+                    <div class="table-header">
+                        <h4> chat</h4>
+                    </div>
                 </div>
             </header>
 
             <section class="chat">
-                <p><strong>John</strong>: Hello!</p>
-                <p><strong>Bob</strong>: How are you!</p>
-            </section>
-
-            <section class="onlineP">
                 <p><strong>John</strong>: Hello!</p>
                 <p><strong>Bob</strong>: How are you!</p>
             </section>
@@ -145,9 +151,18 @@
                 <button>Send</button>
             </form>
         </div>
-
+        <div id="utils" class="tab">
+            <p></p>
+        </div>
     </div>
+    <script>
+        window.addEventListener("load", myInit, true);
 
+        function myInit() {
+            moves()
+        };
+    </script>
+    <script src="moves.js"></script>
 </body>
 
 </html>

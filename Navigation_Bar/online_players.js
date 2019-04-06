@@ -25,15 +25,15 @@ function onlineP() {
 
     var tr = t.insertRow(-1);
 
-
-    for (var i = 0; i < col.length; i++) {
-        var th = document.createElement("th");
-        //this will add the name on the left of the Json as table name 
-        // th.innerHTML = col[i];
-        //this creates a custom table name 
-        th.innerHTML = "User Games"
-        tr.appendChild(th);
-    }
+    /*
+      for (var i = 0; i < col.length; i++) {
+          var th = document.createElement("th");
+          //this will add the name on the left of the Json as table name 
+          // th.innerHTML = col[i];
+          //this creates a custom table name 
+          th.innerHTML = "User Games"
+          tr.appendChild(th);
+      }*/
 
 
     for (var i = 0; i < jsonExamples.length; i++) {
@@ -44,7 +44,7 @@ function onlineP() {
             tabCell.innerHTML = jsonExamples[i][col[j]];
         }
     }
-    var oplayers = document.getElementById("show");
+    var oplayers = document.getElementById("p_online");
     oplayers.innerHTML = "";
     oplayers.appendChild(t);
     $("tr").click(function() {
