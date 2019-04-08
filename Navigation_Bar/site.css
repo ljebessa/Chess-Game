@@ -22,6 +22,10 @@ th {
 tr:nth-child(even) {
     background-color: #dddddd;
 }
+tbody { 
+    height:80em;  
+    overflow:scroll;
+                }
 
 tr:hover {
     cursor: pointer;
