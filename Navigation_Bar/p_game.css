@@ -6,6 +6,11 @@
 body {
     font-family: Arial, Helvetica, sans-serif;
 }
+tbody { 
+    height:80em;  
+    overflow:scroll;
+                }
+
 
 button:hover {
     opacity: 0.8;
@@ -38,6 +43,7 @@ table th {
     text-align: left;
     padding: 5px;
     background: beige;
+
 }
 
 
