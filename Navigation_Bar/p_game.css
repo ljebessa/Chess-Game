@@ -88,24 +88,16 @@ img.avatar {
     border-radius: 30px;
 }
 
-
-/* Canvas to create the centered square for chess board */
-
-canvas {
-    width: 35%;
-    height: calc(60vh - 120px);
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -85%);
-    text-align: center;
-    border-radius: 0.5em;
-}
-
 div.ex1 {
     width: 100%;
     position: absolute;
     top: 58%;
+}
+
+#board {
+    width: 400px;
+    position: absolute;
+    text-align: center
 }
 
 
