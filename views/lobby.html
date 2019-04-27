@@ -150,6 +150,8 @@
         // it will be like { user: 'username', message: 'text' }
         socket.on('chat message', function(data) {
             $('.chat').append('<p><strong>' + data.user + '</strong>: ' + data.message + '</p>');
+            //to scroll down the messages
+            $chat.animate({ scrollTop: 20000000 }, "slow");
         });
 
         // When the form is submitted
