@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+
+</head>
+
+<body>
+    <script>
+        //redirects and send the game id to private game page
+        var socket_connect = function(room) {
+            return io('http://ec2-54-149-192-92.us-west-2.compute.amazonaws.com', {
+                query: 'rooms=lobby'
+            });
+        }
+        var socket = socket_connect('lobby')
+        window.addEventListener("load", myInit, true);
+
+        function myInit() {
+            var game_id = window.location.hash.substring(1);
+            socket.emit('newGame', "true");
+            window.location.href = 'p_game.html' + '#' + game_id;
+        };
+    </script>
+</body>
+
+</html>

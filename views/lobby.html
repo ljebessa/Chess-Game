@@ -8,18 +8,18 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-    <meta name="google-signin-client_id" content="1032027183995-9ejqlmjsu33kjhhh1rdhcl085kklrlrc.apps.googleusercontent.com">
+    <meta name="google-signin-client_id" content="80146750892-vh2nftso2rsa1h09ogk22qdd76ackhjh.apps.googleusercontent.com">
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     <script src="https://unpkg.com/cookie_js@1.2.2/cookie.min.js"></script>
-    <script src="user_Game.js"></script>
-    <script src="available_games.js"></script>
-    <script src="resizable.js"></script>
-    <script src="onGames.js"></script>
-    <script src="online_players.js"></script>
+    <script src="js/user_Game.js"></script>
+    <script src="js/available_games.js"></script>
+    <script src="js/onGames.js"></script>
+    <script src="js/online_players.js"></script>
+    <script src="js/chatHistory.js"></script>
     <!--used for chat box-->
     <script src="/socket.io/socket.io.js"></script>
     <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
-    <link href="site.css" rel="stylesheet">
+    <link href="css/site.css" rel="stylesheet">
 
 </head>
 
@@ -39,8 +39,6 @@
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="#">Lobby</a></li>
-                        <li><a href="index.html">Login</a></li>
-                        <li><a href="b_Players.html">Best Players</a></li>
                         <li><a href="rules.html">Rules</a></li>
                         <li><a href="contact.html">Contact</a></li>
                     </ul>
@@ -58,24 +56,27 @@
 
         <div id="form" class="tab">
             <div id="wrapper">
-                <button style="float: left; margin-bottom: 15px" onclick="newGame()">new game</button>
-
+                <button class="newGame" onclick="newGame()">new game</button>
+            </div>
+            <div class="top">
+                <div class="table-header">
+                    <h4> User Games</h4>
+                </div>
+                <section class="uGames">
+                    <p id="userGames"></p>
+                </section>
             </div>
 
-            <div class="table-header">
-                <h4> User Games</h4>
+            <div class="below">
+                <div class="table-header">
+                    <h4> Ongoing Games</h4>
+                </div>
+                <section class="onGames">
+                    <p id="onG"></p>
+                </section>
             </div>
-            <section class="uGames">
-                <p id="userGames"></p>
-            </section>
-            <div class="table-header">
-                <h4> Ongoing Games</h4>
-            </div>
-            <section class="onGames">
-                <p id="onG"></p>
-            </section>
+
         </div>
-
         <div id="map" class="tab">
             <div>
                 <header>
@@ -92,8 +93,7 @@
                 </header>
 
                 <section class="chat">
-                    <!--<p><strong>John</strong>: Hello!</p>
-                    <p><strong>Bob</strong>: How are you!</p>-->
+                    <!-- space for chat-->
                 </section>
 
                 <section class="onlineP">
@@ -120,31 +120,40 @@
         </div>
     </div>
     <script>
-        var socket = io.connect('http://localhost:3000/default');
+        var socket_connect = function(room) {
+            return io('http://ec2-54-149-192-92.us-west-2.compute.amazonaws.com', {
+                query: 'rooms=lobby'
+            });
+        }
+        var socket = socket_connect('lobby')
 
-        function newGame() {
+        function newGame(event) {
             var xhr = new XMLHttpRequest();
-            xhr.open('POST', 'http://localhost:3000/create');
+            xhr.open('POST', 'http://ec2-54-149-192-92.us-west-2.compute.amazonaws.com/create');
             xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
             xhr.onload = function() {
                 socket.emit('newGame', "true");
+                alert("New Game Created")
             };
-            socket.on('newGame', function(msg) {
-                available_games();
-            });
             const user_id = cookie.get('user');
-            console.log('Signed in as: ' + user_id);
             xhr.send('user_id=' + user_id);
+
         }
 
         function signOut() {
             var auth2 = gapi.auth2.getAuthInstance();
             auth2.signOut().then(function() {
-                console.log('User signed out.');
                 cookie.set('user', "");
                 window.location.href = "index.html";
             });
         }
+
+        //reload the tables when a new game is created
+        socket.on('newGame', function(msg) {
+            available_games();
+            user_Games(cookie.get('user'));
+            onGames();
+        });
 
         function onLoad() {
             console.log('I am here');
@@ -153,43 +162,39 @@
                 console.log('User signed in.');
 
             });
+            // new_user(); //send username to backend via socket
 
-            if (cookie.get('user') === " ") {
-                window.location.href = "index.html";
-            } else {
-
-                ///use this to set the userrname 
-                var xhr = new XMLHttpRequest();
-                xhr.open('POST', 'http://localhost:3000/create');
-                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-                xhr.onload = function() {
-                    socket.emit('newGame', "true");
-                };
-                socket.on('newGame', function(msg) {
-                    available_games();
-                });
-                const user_id = cookie.get('user');
-                console.log('Signed in as: ' + user_id);
-                xhr.send('user_id=' + user_id);
-            }
         }
 
         //On the client side, you tell Socket.IO client to connect to that namespace:
-        //to fix error use http://localhost:3000/default on server
-        //var socket = io.connect('http://localhost:3000/default');
+        //to fix error use http://ec2-54-149-192-92.us-west-2.compute.amazonaws.com/default on server
+        //var socket = io.connect('http://ec2-54-149-192-92.us-west-2.compute.amazonaws.com/default');
 
         // The user count. Can change when someone joins/leaves
         /*socket.on('count', function(data) {
             $('.user-count').html(data);
         });*/
+        window.onload = function() {
+            chat_history(), new_user(), user();
+        }
 
-        socket.on('usernames', function(data) {
-            socket.emit('usernames', cookie.get('user') || 'Anonymous');
-            console.log("online players " + data)
-            var jsonExamples = data;
-            onlineP();
+        function user() {
+            if (cookie.get('user') == undefined) {
+                window.location.href = "index.html";
+            }
+
+        }
+
+        function new_user() {
+            socket.emit('username', {
+                user: cookie.get('user')
+            });
+        }
+
+
+        socket.on('username', function(data) {
+            onlineP(data);
         })
-
 
         // When we receive a message
         // it will be like { user: 'username', message: 'text' }
@@ -210,7 +215,7 @@
 
             // Send the message to the server
             socket.emit('message', {
-                user: cookie.get('user') || 'Anonymous',
+                user: cookie.get('user'),
                 message: message,
                 chat_id: "lobby"
             });
@@ -222,13 +227,46 @@
 
         window.addEventListener("load", myInit, true);
 
-        function myInit() {
-            user_Games(), available_games(), onGames(), onLoad()
+        function myInit(event) {
+            event.stopPropagation();
+            user_Games(cookie.get('user')), available_games(), onGames(), onLoad();
         };
 
-        $(".avGames").scrollTop(0);
-        $(".uGames").scrollTop(0);
-        $(".onGames").scrollTop(0);
+        function chat_history() {
+            var chat;
+            var request = new XMLHttpRequest();
+            var params = 'chat_id=' + 'lobby';
+            request.open('GET', 'http://ec2-54-149-192-92.us-west-2.compute.amazonaws.com/chatHistory' + '?' + params); // `false` makes the request synchronous
+            request.onload = function() {
+                if (request.status == 200) {
+                    chat = JSON.parse(request.responseText)
+                    var col = [];
+                    for (var i = 0; i < chat.length; i++) {
+                        $('.chat').append('<p><strong>' + chat[i].display_name + '</strong>: ' + chat[i].messages + '</p>');
+                        $(".chat").stop().animate({
+                            scrollTop: $(".chat")[0].scrollHeight
+                        }, 1000);
+                    }
+                }
+            }
+            request.send(null);
+        }
+
+        $(".onG").stop().animate({
+            scrollTop: $(".onG")[0].scrollHeight
+        }, 1000);
+        $(".userGames").stop().animate({
+            scrollTop: $(".userGames")[0].scrollHeight
+        }, 1000);
+        $(".available_games").stop().animate({
+            scrollTop: $(".available_games")[0].scrollHeight
+        }, 1000);
+
+        $("tr").click(function(event) {
+            propStopped(event);
+            event.stopPropagation();
+            propStopped(event);
+        });
     </script>
 
 </body>
